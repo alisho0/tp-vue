@@ -1,0 +1,1 @@
+// aqui vas a completar cada componente global
