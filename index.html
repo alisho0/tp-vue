@@ -1,2 +1,58 @@
 <!-- El que trabaje aqui debe completar las vistas con los componentes -->
 <!--Importar bien los scripts -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portafolio Vue SPA</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="style.css">
+  </head>
+
+<body>
+
+<div id="app">
+
+  <mi-header></mi-header>
+
+  <nav class="menu">
+    <button @click="mostrarVista('inicio')">Inicio</button>
+    <button @click="mostrarVista('proyectos')">Proyectos</button>
+    <button @click="mostrarVista('contacto')">Contacto</button>
+    <button @click="mostrarVista('agregar')">Agregar Proyecto</button>
+  </nav>
+
+  <div v-show="vista_inicio">
+    <vista-inicio></vista-inicio>
+  </div>
+
+  <div v-show="vista_proyectos">
+    <vista-proyectos :items="proyectos" @like="ponerLike"></vista-proyectos>
+  </div>
+
+  <div v-show="vista_contacto">
+    <vista-contacto
+      v-model:nombre="formContacto.nombre"
+      v-model:mensaje="formContacto.mensaje">
+    </vista-contacto>
+  </div>
+
+  <div v-show="vista_agregar">
+    <vista-agregar
+      v-model:titulo="nuevoProyecto.titulo"
+      v-model:descripcion="nuevoProyecto.descripcion"
+      @agregar="agregarProyecto">
+    </vista-agregar>
+  </div>
+
+  <mi-footer></mi-footer>
+</div>
+
+<script src="scripts.js"></script>
+<script src="componentes.js"></script>
+<script>
+  app.mount('#app');
+</script>
+
+</body>
+</html>
